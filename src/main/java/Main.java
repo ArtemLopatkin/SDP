@@ -1,16 +1,14 @@
 public class Main {
     public static void main(String[] args) {
 
-        Hospital hospital = new HospitalBuilder()
-            .setName("Central Hospital")
-            .setBeds(200)
-            .setEmergencyDepartment(true)
-            .setIntensiveCareUnit(true)
-            .setSurgeryDepartment(true)
-            .setLaboratory(true)
-            .setPharmacy(true)
-            .build();
+        HospitalDirector director = new HospitalDirector();
 
-        System.out.println(hospital);
+        Hospital generalHospital = director.buildGeneralHospital();
+        Hospital smallClinic = director.buildSmallClinic();
+        Hospital emergencyHospital = director.buildEmergencyHospital();
+
+        System.out.println(generalHospital);
+        System.out.println(smallClinic);
+        System.out.println(emergencyHospital);
     }
 }
