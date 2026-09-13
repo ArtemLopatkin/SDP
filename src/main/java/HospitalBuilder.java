@@ -43,6 +43,15 @@ public class HospitalBuilder {
     }
 
     public Hospital build() {
+
+        if (name == null || name.isBlank()) {
+            throw new IllegalStateException("Hospital name is required");
+        }
+
+        if (beds <= 0) {
+            throw new IllegalStateException("Number of beds must be greater than 0");
+        }
+
         return new Hospital(
             name,
             beds,
