@@ -14,11 +14,9 @@ src/main/java/
 
 ## How it works
 
-`Hospital` is the object that is being created.
+`Hospital` is the object being created.
 
-`HospitalBuilder` creates a hospital step by step. It has setter methods for the hospital name, number of beds, and departments. The methods return the builder, so they can be chained together.
-
-Example:
+`HospitalBuilder` builds a hospital step by step. Its setter methods return the builder, so they can be chained together.
 
 ```java
 Hospital hospital = new HospitalBuilder()
@@ -32,30 +30,52 @@ Hospital hospital = new HospitalBuilder()
         .build();
 ```
 
-`HospitalDirector` contains predefined ways to build hospitals.
-
-`Main` is used to test the builder and validation.
+`HospitalDirector` provides predefined hospital configurations, and `Main` demonstrates and tests the implementation.
 
 ## Validation
 
-The builder checks the values before creating the object.
+The builder checks the hospital state before creating the object:
 
 - The name cannot be empty.
 - The number of beds must be greater than 0.
 
-If invalid values are passed, an `IllegalStateException` is thrown.
+Invalid values cause an `IllegalStateException`.
 
-## Test examples
+## Clean Code
 
-The project includes examples of:
+### 1. Meaningful Names
 
-- a general hospital;
-- a small clinic;
-- an emergency hospital;
-- invalid hospital name;
-- invalid number of beds.
+**Before:**
+```java
+.setName("General Hospital")
+.setBeds(200)
+```
 
-## Running the project
+**After:**
+```java
+.setName(GENERAL_HOSPITAL_NAME)
+.setBeds(GENERAL_HOSPITAL_BEDS)
+```
+
+The constants make the purpose of the values clear.
+
+### 2. Small Methods
+
+Validation is separated into small methods instead of putting all checks directly into `build()`.
+
+### 3. Consistent Formatting
+
+The classes use consistent indentation, naming, and formatting to keep the code easy to read.
+
+### 4. Validated Construction
+
+`build()` checks the object's state before returning a `Hospital`, preventing invalid objects from being created.
+
+### 5. No Magic Numbers/Strings
+
+Repeated configuration values are stored in named constants instead of unexplained numbers or strings.
+
+## Running
 
 From the project directory:
 
@@ -66,4 +86,4 @@ java -cp src/main/java Main
 
 ## Git
 
-The project uses Git and the main branch is `main`.
+The project uses Git with `main` as the main branch.
